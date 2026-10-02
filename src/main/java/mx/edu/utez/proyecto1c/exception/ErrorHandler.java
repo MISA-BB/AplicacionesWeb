@@ -22,4 +22,10 @@ public class ErrorHandler {
         return ResponseEntity.badRequest().body(errores);
     }
 
+    @ExceptionHandler(ReglaNegocioException.class)
+    public ResponseEntity<Map<String, String>> manejarReglaNegocio(ReglaNegocioException ex) {
+        Map<String, String> error = new LinkedHashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.badRequest().body(error);
+    }
 }
